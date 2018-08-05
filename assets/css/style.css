@@ -1,0 +1,222 @@
+html,
+body{
+    height: 100%;
+    background-color: #fff;
+    font-family: 'Raleway', sans-serif;
+}
+
+body{
+    padding-top: 54px;
+}
+
+#wrapper {
+    padding: 30px;
+}
+
+@media (min-width: 992px) {
+    body {
+        padding-top: 56px;
+    }
+}
+
+
+
+/*=====================================================================
+                                Categories color:#343a40
+=====================================================================*/
+
+.side-bar{ 
+    padding: 5px;
+    border-bottom: 1px solid rgba(52, 58, 64, .2);
+    margin-bottom: 20px;
+}
+
+.side-bar h4{
+    text-transform: uppercase;
+    color: #343a40;
+    font-size: 18px;
+    font-weight: bold;
+    vertical-align: middle;
+    position: relative;
+}
+
+/* .side-bar h4 span{
+    
+} */
+
+.side-bar-clear{
+    position: absolute;
+    top: 1px;
+    right: 0;
+    display: none;
+    cursor: pointer;
+}
+
+.side-bar-lists{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.side-bar-lists li{
+    margin: 10px 0 10px 0;
+    position: relative;
+}
+
+
+
+.side-bar-lists li a{
+    color: #343a40;
+    font-weight: 700;
+    padding: 5px 0 5px 0;
+    font-size: 16px;
+
+}
+
+.side-bar-lists li a:hover{
+    color: rgba(52, 58, 64, .5);
+    text-decoration: none;
+}
+.side-bar-lists li span{
+    position: absolute;
+    right: 0;
+    top: 5px;
+}
+
+a.sidebar-active{
+    border-bottom: 2px solid #28a745; 
+    font-size: 18px!important;
+    color: #28a745!important;
+}
+
+
+/*=====================================================================
+                                SHOP
+=====================================================================*/
+
+
+#prod-image{
+    text-align: center;
+    width:  220px;
+    height: 200px;
+}
+
+.card-title{
+    margin-bottom: 5px;
+}
+
+.card-title a{
+    text-decoration: none;
+    color: #343a40;
+}
+
+.card-title a:hover{
+    color: #28a745;
+}
+
+.card-price {
+    color: #28a745;
+}
+#loading{
+    display: none;
+}
+
+.inline-form{
+    display: inline-block;
+}
+
+
+.cart-input{
+    width: 50%;
+    margin: auto;
+}
+
+.cart-table-qty{
+    width: 30%;
+    text-align: center;
+}
+
+/*=====================================================================
+                                HOME
+=====================================================================*/
+
+#home{
+    height: 92.65%;
+    width: 100%;
+}
+
+#home-bg{
+    background-image: url('../images/bg/bg.jpg');
+    background-size:cover;
+    background-position: center;
+    height: 100%;
+}
+
+#home-content{
+    display: table;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, .5);
+    
+}
+
+#home-content-inner{
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+#home-heading h2{
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #fff;
+}
+
+#home-btn a{
+    border-width: 2px;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 10px;
+}
+
+/*========================================================================= 
+                                Table
+===========================================================================*/
+
+.table td{
+    vertical-align: middle;
+}
+
+
+/*========================================================================= 
+                                Modal
+===========================================================================*/
+
+.modal-dialog{
+        /* width: 80%; */
+    width: 800px;
+    max-width: 800px;
+}
+
+
+#modal-image-stocks,
+#modal-image-brand,
+#modal-image-category{
+    color: #28a745;
+}
+/*========================================================================= 
+                                Buttons
+===========================================================================*/
+
+.cart-buttons{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+
+
+
+
+
