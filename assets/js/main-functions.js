@@ -1,5 +1,5 @@
 function base_url(){
-    return "http://localhost:81/gadget-shop/";
+    return "http://localhost:81/gadget-shops/";
 }
 
 function number(x){
