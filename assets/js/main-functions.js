@@ -1,5 +1,5 @@
 function base_url(){
-    return "http://localhost:81/gadget-shops/";
+    return "http://localhost:81/gadget-shop/";
 }
 
 function number(x){
@@ -66,6 +66,9 @@ function updateCart(e, v, id, stock){
             loadCart();
         }
     }
+    v.onfocusout = function(){
+        loadCart();
+    }
 }
 
 function removeCartItem(id){
@@ -84,10 +87,15 @@ function loadProducts(page, obj){
             cat:obj.cat,
             sort:obj.sort
         },
+        beforeSend: function(){
+            $("#loading").show();
+        },
         success: function(response){
-            let shop = JSON.parse(response);
+
+            $("#loading").hide();
+
+            const shop = JSON.parse(response);
             let output = "";
-            console.log(shop);
             for(let i = 0; i < shop.products.length; i++){
                  output += `<div class="col-lg-4 col-md-6 mb-4">
                                 <div class="card h-100">
@@ -129,10 +137,7 @@ function add_to_cart(event, prod_id, type){
         prod_qty = $("#modal-qty").val();
     }else{
         prod_qty = 1;
-        $("#form-"+prod_id).attr("onsubmit", `add_to_cart(event, ${prod_id}, '')`);
-        $("#adding").html("<i class='fa fa-shopping-cart'></i> Adding...");
-        $("#adding_"+prod_id).removeClass("btn-primary");        
-        $("#adding_"+prod_id).addClass("btn-warning");
+        $("#form-"+prod_id).attr("onsubmit", `add_to_cart(event, ${prod_id}, '')`); 
     }
 
     $.ajax({
@@ -141,6 +146,11 @@ function add_to_cart(event, prod_id, type){
         data:{
             prod_qty: prod_qty,
             prod_id: prod_id
+        },
+        beforeSend: function(){
+            $("#adding").html("<i class='fa fa-shopping-cart'></i> Adding...");
+            $("#adding_"+prod_id).removeClass("btn-primary");        
+            $("#adding_"+prod_id).addClass("btn-warning");
         },
         success: function(res){
             cartitems();

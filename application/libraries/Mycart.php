@@ -96,6 +96,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             
         }
 
+        public function cartTotals(){
+            $total = 0;
+            foreach($_SESSION["cart"] as $c => $v){
+                $total = $total + $v["price"] * $v["quantity"];
+            }
+
+            return $total;
+        }
+
     }
 
 

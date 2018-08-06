@@ -215,8 +215,30 @@ a.sidebar-active{
     margin-bottom: 10px;
 }
 
+/*========================================================================= 
+                                checkout
+===========================================================================*/
 
+.checkout-tb .cart-header{
+    color: rgba(52, 58, 64, .7);
+}
 
+.payment-lists{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.payment-list{
+    padding: 5px;
+    border-bottom: 1px solid rgba(52, 58, 64, .7);
+    border-top: 1px solid rgba(52, 58, 64, .7);
+}
 
+.payment-list h5{
+    margin: 0;
+    padding: 0;
+}
 
-
+.mode-of-payment{
+    margin-bottom: 20px;
+}

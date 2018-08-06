@@ -38,9 +38,9 @@
             <nav aria-label="Page navigation example" id="pagination">
         
             </nav>
-            <!-- <div id="loading" class="text-center">
-                <img src="<?//=base_url()?>assets/images/loading.gif" alt="">
-            </div> -->
+            <div id="loading" class="text-center">
+                <img src="<?=base_url()?>assets/images/loading.gif" alt="">
+            </div>
         <!-- /.row -->
 
         </div>

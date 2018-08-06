@@ -6,14 +6,13 @@ $(document).ready(function(){
         cat: false
     }
 
-    loadProducts("/1", sort);
+    loadProducts("/", sort);
     loadCart();
 
     $(document).on("click", ".page-link a", function(e){
         e.preventDefault();
-        let page = $(this).attr("href"); 
+        let page = $(this).attr("href");
         loadProducts(page, sort);
-        
     });
 
 
@@ -21,7 +20,7 @@ $(document).ready(function(){
                 
         sort.cat = $(this).data("id");
                 
-        loadProducts("/1", sort);
+        loadProducts("/", sort);
 
         $(".cat-link").removeClass("sidebar-active");
         $(this).addClass("sidebar-active");
@@ -33,7 +32,7 @@ $(document).ready(function(){
     $(document).on("click", ".brand-link", function(e){
         sort.brand = $(this).data("id");
 
-        loadProducts("/1", sort);
+        loadProducts("/", sort);
 
         $(".brand-link").removeClass("sidebar-active");
         $(this).addClass("sidebar-active");
@@ -44,7 +43,7 @@ $(document).ready(function(){
 
     $(document).on("click", ".sort-link", function(e){
         sort.sort = $(this).data("sort");
-        loadProducts("/1", sort);
+        loadProducts("/", sort);
 
         $(".sort-link").removeClass("sidebar-active");        
         $(this).addClass("sidebar-active");    
@@ -70,7 +69,7 @@ $(document).ready(function(){
 
         $(this).hide();
         $("."+type+"-link").removeClass("sidebar-active");
-        loadProducts("/1", sort);
+        loadProducts("/", sort);
 
     });
 

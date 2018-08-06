@@ -32,6 +32,8 @@
                     "options" => $option
                 ];
                 echo json_encode($data);
+            }else{
+                redirect("shop");
             }
         }
 

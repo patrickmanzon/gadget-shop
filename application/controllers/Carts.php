@@ -2,8 +2,19 @@
 
     class Carts extends CI_Controller{
 
-        public function add(){
+        public function checkout(){
 
+            if($this->mycart->cartContent() === 0){
+                redirect("shop");
+            }
+            $data["carts"] = $this->mycart->cartContent();
+            $data["cart_total"] = $this->mycart->cartTotals();
+            $this->load->view("templates/front/header");
+            $this->load->view("cart/checkout", $data);
+            $this->load->view("templates/front/footer");
+        }
+
+        public function add(){
 
             if($this->input->is_ajax_request()){
 
@@ -24,6 +35,8 @@
                 
 
                 echo $this->mycart->addCartItem($data);
+            }else{
+                redirect("shop");   
             }     
         }
 
