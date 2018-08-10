@@ -66,13 +66,58 @@
                 $this->db->order_by("prod_id", "DESC");
             }
 
-            if($data["cat"] != "false" && $data["brand"] != "false"){
+            if($data["cat"] != "false" && $data["brand"] != "false" && $data["search"] != "false"){
+
+                $this->db->group_start();
+                    $this->db->like("prod_name", $data["search"], "both");
+                    $this->db->or_like("prod_price", $data["search"], "both");
+                    $this->db->or_like("prod_desc", $data["search"], "both");
+                $this->db->group_end();
+
                 $this->db->where("products.cat_id", $data["cat"]);  
                 $this->db->where("products.brand_id", $data["brand"]); 
+
+            }else if($data["cat"] != "false" && $data["brand"] != "false"){
+
+                $this->db->where("products.cat_id", $data["cat"]);  
+                $this->db->where("products.brand_id", $data["brand"]);  
+
+            }else if($data["cat"] != "false" && $data["search"] != "false"){
+
+                $this->db->group_start();
+                    $this->db->like("prod_name", $data["search"], "both");
+                    $this->db->or_like("prod_price", $data["search"], "both");
+                    $this->db->or_like("prod_desc", $data["search"], "both");
+                $this->db->group_end();
+
+                $this->db->where("products.cat_id", $data["cat"]); 
+                              
+            }else if($data["brand"] != "false" && $data["search"] != "false"){
+
+                $this->db->group_start();
+                    $this->db->like("prod_name", $data["search"], "both");
+                    $this->db->or_like("prod_price", $data["search"], "both");
+                    $this->db->or_like("prod_desc", $data["search"], "both");
+                $this->db->group_end();
+
+                $this->db->where("products.brand_id", $data["brand"]);  
+
+            }else if($data["search"] != "false"){
+
+                $this->db->group_start();
+                    $this->db->like("prod_name", $data["search"], "both");
+                    $this->db->or_like("prod_price", $data["search"], "both");
+                    $this->db->or_like("prod_desc", $data["search"], "both");
+                $this->db->group_end();
+
             }else if($data["cat"] != "false"){
-                $this->db->where("products.cat_id", $data["cat"]);                
+
+                $this->db->where("products.cat_id", $data["cat"]);   
+
             }else if($data["brand"] != "false"){
-                $this->db->where("products.brand_id", $data["brand"]);                                 
+
+                $this->db->where("products.brand_id", $data["brand"]);    
+
             }
            
             $this->db->where("prod_stock >", 0);
@@ -80,18 +125,63 @@
             return $query->result();
         }
 
-        public function product_count($brand = FALSE, $cat = FALSE){
+        public function product_count($option){
 
-            if($brand != 'false' && $cat != 'false'){
-                $query = $this->db->get_where("products", ["prod_stock >" => 0,"brand_id" => $brand ,"cat_id" => $cat]);
+            if($option["brand"] != 'false' && $option["cat"] != 'false' && $option["search"] != 'false'){
 
-            }else if($brand != 'false'){
-                $query = $this->db->get_where("products", ["prod_stock >" => 0,"brand_id" => $brand]);
+                $this->db->group_start();
+                    $this->db->like("prod_name", $option["search"], "both");
+                    $this->db->or_like("prod_price", $option["search"], "both");
+                    $this->db->or_like("prod_desc", $option["search"], "both");
+                $this->db->group_end();
+                $query = $this->db->get_where("products", ["prod_stock >" => 0,"brand_id" => $option["brand"] ,"cat_id" => $option["cat"]]); 
 
-            }else if($cat != 'false'){
-                $query = $this->db->get_where("products", ["prod_stock >" => 0,"cat_id" => $cat]);                      
-            }else{
+            }else if($option["brand"] != 'false' && $option["cat"] != 'false'){
+
+                $query = $this->db->get_where("products", ["prod_stock >" => 0,"brand_id" => $option["brand"] ,"cat_id" => $option["cat"]]);
+
+            }else if($option["brand"] != 'false' && $option["search"] != "false"){
+
+                $this->db->group_start();
+                    $this->db->like("prod_name", $option["search"], "both");
+                    $this->db->or_like("prod_price", $option["search"], "both");
+                    $this->db->or_like("prod_desc", $option["search"], "both");
+                $this->db->group_end();
+
+                $query = $this->db->get_where("products", ["prod_stock >" => 0,"brand_id" => $option["brand"]]);
+
+            }else if($option["cat"] != 'false' && $option["search"] != "false"){
+
+                $this->db->group_start();
+                    $this->db->like("prod_name", $option["search"], "both");
+                    $this->db->or_like("prod_price", $option["search"], "both");
+                    $this->db->or_like("prod_desc", $option["search"], "both");
+                $this->db->group_end();
+
+                $query = $this->db->get_where("products", ["prod_stock >" => 0,"cat_id" => $option["cat"]]);
+
+            }else if($option["brand"] != 'false'){
+
+                $query = $this->db->get_where("products", ["prod_stock >" => 0,"brand_id" => $option["brand"]]);
+
+            }else if($option["cat"] != 'false'){
+
+                $query = $this->db->get_where("products", ["prod_stock >" => 0,"cat_id" => $option["cat"]]);   
+
+            }else if($option["search"] != 'false'){
+
+                $this->db->group_start();
+                    $this->db->like("prod_name", $option["search"], "both");
+                    $this->db->or_like("prod_price", $option["search"], "both");
+                    $this->db->or_like("prod_desc", $option["search"], "both");
+                $this->db->group_end();
+
                 $query = $this->db->get_where("products", ["prod_stock >" => 0]);
+
+            }else{
+
+                $query = $this->db->get_where("products", ["prod_stock >" => 0]);
+
             }
             return $query->num_rows();
         }

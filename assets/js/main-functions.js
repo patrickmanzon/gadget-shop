@@ -47,7 +47,7 @@ function loadCart(){
 }
 
 function updateCart(e, v, id, stock){
-    if(e.which === 13 || e.keyCode === 13 || e.onfocusout){
+    if(e.which === 13 || e.keyCode === 13){
         if(v.value !== "" && !isNaN(v.value)){
 
             if(v.value > stock){
@@ -85,7 +85,8 @@ function loadProducts(page, obj){
         data:{
             brand:obj.brand,
             cat:obj.cat,
-            sort:obj.sort
+            sort:obj.sort,
+            search:obj.search
         },
         beforeSend: function(){
             $("#loading").show();
@@ -93,11 +94,11 @@ function loadProducts(page, obj){
         success: function(response){
 
             $("#loading").hide();
-
             const shop = JSON.parse(response);
             let output = "";
-            for(let i = 0; i < shop.products.length; i++){
-                 output += `<div class="col-lg-4 col-md-6 mb-4">
+            if(shop.products.length > 0){
+                for(let i = 0; i < shop.products.length; i++){
+                    output += `<div class="col-lg-4 col-md-6 mb-4">
                                 <div class="card h-100">
                                     <div id="prod-image" class="m-auto">
                                         <a href="javascript:void(0);" onclick="viewPreview('${shop.products[i].prod_id}')"><img class="card-img-top animated zoomIn" src="${shop.products[i].prod_image}" alt=""></a>
@@ -117,7 +118,11 @@ function loadProducts(page, obj){
                                     </div>
                                 </div>
                             </div>`;
-
+                }
+            }else{
+                output +=   `<div class='col-lg-12'>
+                                <h2 class='text-center'>Product not found!</h2>
+                            </div>`;
             }
             cartitems();
             $("#shop-products").html(output);

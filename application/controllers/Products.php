@@ -18,10 +18,11 @@
                 $option = [
                     "cat" => $this->input->post("cat"),
                     "brand" => $this->input->post("brand"),
-                    "sort" => $this->input->post("sort")
+                    "sort" => $this->input->post("sort"),
+                    "search" => $this->input->post("search")
                 ];   
 
-                $pagination = $this->prod_pagination($this->product_model->product_count($option["brand"], $option["cat"]));
+                $pagination = $this->prod_pagination($this->product_model->product_count($option));
 
                 $this->pagination->initialize($pagination);
                 $page = $this->uri->segment(3);

@@ -42,8 +42,6 @@
 
         public function update(){
             if($this->input->is_ajax_request()){
-                
-
                 $this->mycart->updateCart($this->input->post("prod_qty"), NULL, $this->input->post("prod_id"));
                 exit("Cart updated");
             }else{

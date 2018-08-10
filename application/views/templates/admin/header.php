@@ -26,9 +26,9 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-          <a class="nav-link" href="index.html">
-            <i class="fa fa-fw fa-dashboard"></i>
-            <span class="nav-link-text">Dashboard</span>
+          <a class="nav-link" href="<?=base_url()?>shop">
+            <i class="fa fa-fw fa-home"></i>
+            <span class="nav-link-text">Website</span>
           </a>
         </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Example Pages">
@@ -74,24 +74,11 @@
             <span class="nav-link-text">Brands</span>
           </a>
         </li>
-      </ul>
-      <ul class="navbar-nav sidenav-toggler">
-        <li class="nav-item">
-          <a class="nav-link text-center" id="sidenavToggler">
-            <i class="fa fa-fw fa-angle-left"></i>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Link">
+          <a class="nav-link" href="<?=base_url()?>users/logout">
+            <i class="fa fa-fw fa-link"></i>
+            <span class="nav-link-text">Logout</span>
           </a>
-        </li>
-      </ul>
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            User
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="#">Website</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Logout</a> 
-          </div>
         </li>
       </ul>
     </div>

@@ -28,32 +28,37 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="<?=base_url();?>home">Home</span></a>
+                        <a class="nav-link" href="<?=base_url();?>shop">Home</span></a>
                     </li>
+                </ul>
+                
+                <ul class="navbar-nav ml-auto">
+                    <!-- <div class="form-inline">
+                        <input class="form-control search-input" type="search" placeholder="SEARCH AND HIT ENTER" aria-label="Search">
+                    </div> -->
                     <li class="nav-item">
                         <a class="nav-link" href="<?=base_url()?>cart"><i class="fa fa-shopping-cart"></i> <span class="badge badge-danger total-cart-items">0</span></a>
                     </li>
-                    <!-- <li class="nav-item dropdown">
+                    <?php if(!$this->session->userdata("user_id")): ?>
+                    <li class="nav-item">
+                        <a href="<?=base_url()?>users/login" class="nav-link">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="<?=base_url()?>users/register" class="btn btn-outline-success my-2 my-sm-0">Register</a>
+                    </li>
+                    <?php else: ?>
+                    <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown
+                            <i class="fa fa-user"></i>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Orders</a>
+                            <a class="dropdown-item" href="#">My Profile</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a>
+                            <a class="dropdown-item" href="<?=base_url()?>users/logout" class="nav-link">Logout</a>
                         </div>
-                    </li> -->
-                </ul>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
-                <ul class="navbar-nav ml-auto">
-                    
-                    <li class="nav-item">
-                        <a href="#" class="btn btn-outline-success my-2 my-sm-0" >LOGIN/REGISTER</a>
                     </li>
+                    <?php endif; ?>
                 </ul>
             </div>    
         </div>

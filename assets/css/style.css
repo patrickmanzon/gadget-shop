@@ -242,3 +242,7 @@ a.sidebar-active{
 .mode-of-payment{
     margin-bottom: 20px;
 }
+
+.nav-link.dropdown-toggle::after {
+    display:none;
+}

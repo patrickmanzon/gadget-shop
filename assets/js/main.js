@@ -1,9 +1,10 @@
 $(document).ready(function(){
 
-    let sort = {
+    const sort = {
         sort: false,
         brand: false,
-        cat: false
+        cat: false,
+        search: false
     }
 
     loadProducts("/", sort);
@@ -65,12 +66,26 @@ $(document).ready(function(){
             case "sort":
                 sort.sort = false;
                 break;
+            case "search":
+                sort.search = false
+                break
         }
 
         $(this).hide();
         $("."+type+"-link").removeClass("sidebar-active");
         loadProducts("/", sort);
 
+    });
+
+    $(document).on("keyup", ".search-input", function(e){
+        if(e.which === 13 || e.keyCode === 13){
+            if($(this).val() != ""){
+                sort.search = $(this).val();
+                loadProducts("/", sort);
+                $(".search .side-bar-clear").show();
+            }
+            $(this).val("");
+        }
     });
 
 });
