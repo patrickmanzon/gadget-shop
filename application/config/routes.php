@@ -63,6 +63,8 @@ $route['admin/products/add'] = 'products/add';
 
 $route['cart'] = 'carts/content';
 $route['shop'] = 'products/shop';
+$route['product/(:num)'] = 'products/product/$1';
+
 
 $route['default_controller'] = 'products/shop';
 $route['404_override'] = '';

@@ -3,6 +3,11 @@
     class Brands extends CI_Controller{
 
         public function list(){
+
+            if(!$this->session->userdata("user_id") || $this->session->userdata("role") != 1){
+                redirect("shop");
+            }
+
             $data["title"] = "Brands";
             $data["brands"] = $this->brand_model->get_brands();
 
@@ -13,6 +18,10 @@
         }
 
         public function add(){
+
+            if(!$this->session->userdata("user_id") || $this->session->userdata("role") != 1){
+                redirect("shop");
+            }
 
             $this->form_validation->set_rules("name", "Brand Name", "required");
 
@@ -28,6 +37,11 @@
         }
 
         public function edit($id){
+
+            if(!$this->session->userdata("user_id") || $this->session->userdata("role") != 1){
+                redirect("shop");
+            }
+
             $this->form_validation->set_rules("name", "Brand Name", "required");
 
             if($this->form_validation->run()){
@@ -38,6 +52,18 @@
             }
 
             redirect("admin/brands/list");
+        }
+
+        public function delete($id){
+
+            if(!$this->session->userdata("user_id") || $this->session->userdata("role") != 1){
+                redirect("shop");
+            }
+
+            $this->brand_model->delete($id);
+            $this->session->set_flashdata("brand_deleted", "Brand deleted");
+            redirect("admin/brands/list");
+
         }
 
         

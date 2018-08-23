@@ -23,6 +23,11 @@
             return $this->db->update("brands", ["brand_name" => $this->input->post("name")]);
         }
 
+        public function delete($id){
+            $this->db->where("brand_id", $id);
+            return $this->db->delete("brands");
+        }
+
 
     }
 

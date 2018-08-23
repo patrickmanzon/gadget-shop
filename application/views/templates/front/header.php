@@ -52,8 +52,12 @@
                             <i class="fa fa-user"></i>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <?php if($this->session->userdata("role") == 1 ): ?>
+                            <a class="dropdown-item" href="<?=base_url()?>admin/products/list">Dashboard</a>
+                            <?php else: ?>
                             <a class="dropdown-item" href="#">Orders</a>
                             <a class="dropdown-item" href="#">My Profile</a>
+                            <?php endif; ?>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="<?=base_url()?>users/logout" class="nav-link">Logout</a>
                         </div>

@@ -101,7 +101,7 @@ function loadProducts(page, obj){
                     output += `<div class="col-lg-4 col-md-6 mb-4">
                                 <div class="card h-100">
                                     <div id="prod-image" class="m-auto">
-                                        <a href="javascript:void(0);" onclick="viewPreview('${shop.products[i].prod_id}')"><img class="card-img-top animated zoomIn" src="${shop.products[i].prod_image}" alt=""></a>
+                                        <a href="${base_url()}product/${shop.products[i].prod_id}"><img class="card-img-top animated zoomIn" src="${shop.products[i].prod_image}" alt=""></a>
                                     </div>
                                     <div class="card-body">
                                         <h4 class="card-title">
@@ -138,7 +138,7 @@ function add_to_cart(event, prod_id, type){
     
     let prod_qty;
    
-    if(type == "modal"){
+    if(type == "modal" || type == "product"){
         prod_qty = $("#modal-qty").val();
     }else{
         prod_qty = 1;
@@ -159,7 +159,7 @@ function add_to_cart(event, prod_id, type){
         },
         success: function(res){
             cartitems();
-            if(type == 'modal'){
+            if(type == 'modal' || type === 'product'){
                 $("#modal-qty").val("1");
             }else{
                 $("#adding_"+prod_id).addClass("btn-primary");        

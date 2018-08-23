@@ -12,6 +12,20 @@
             $this->load->view("templates/front/footer");
         }
 
+        public function product($id){
+
+            $data["product"] = $this->product_model->get_products($id);
+
+            if($data["product"]->prod_stock <= 0){
+                redirect("shop");
+            }
+
+            $this->load->view("templates/front/header");
+            $this->load->view("products/front/product", $data);
+            $this->load->view("templates/front/footer");
+
+        }
+
         public function ajaxShop(){
             if($this->input->is_ajax_request()){
 
@@ -46,6 +60,10 @@
 
         public function list(){
 
+            if(!$this->session->userdata("user_id") || $this->session->userdata("role") != 1){
+                redirect("shop");
+            }
+
             $data["title"] = "Products";
             $data["products"] = $this->product_model->get_products();
 
@@ -56,6 +74,10 @@
         }
 
         public function add(){
+
+            if(!$this->session->userdata("user_id") || $this->session->userdata("role") != 1){
+                redirect("shop");
+            }
 
             $data["title"] = "Add Product";
             $data["brands"] = $this->brand_model->get_brands();
@@ -94,6 +116,10 @@
         }
 
         public function edit($id){
+
+            if(!$this->session->userdata("user_id") || $this->session->userdata("role") != 1){
+                redirect("shop");
+            }
 
             $data["title"] = "Edit Product";
             $data["prod"] = $this->product_model->get_products($id);
@@ -141,6 +167,11 @@
         }
 
         public function delete($id){
+
+            if(!$this->session->userdata("user_id") || $this->session->userdata("role") != 1){
+                redirect("shop");
+            }
+            
             $delete_image = $this->product_model->get_products($id)->prod_image;
             unlink($delete_image);
             $this->product_model->delete($id);

@@ -3,6 +3,10 @@
 
         public function list(){
 
+            if(!$this->session->userdata("user_id") || $this->session->userdata("role") != 1){
+                redirect("shop");
+            }
+
             $data["title"] = "Catgories";
             $data["categories"] = $this->category_model->get_categories();
 
@@ -13,6 +17,11 @@
         }
 
         public function add(){
+
+            if(!$this->session->userdata("user_id") || $this->session->userdata("role") != 1){
+                redirect("shop");
+            }
+
             $this->form_validation->set_rules("name", "Category Name", "required");
 
             if($this->form_validation->run()){
@@ -25,6 +34,10 @@
         }
 
         public function edit($id){
+
+            if(!$this->session->userdata("user_id") || $this->session->userdata("role") != 1){
+                redirect("shop");
+            }
 
             $this->form_validation->set_rules("name", "Category Name", "required");
 
@@ -39,6 +52,11 @@
         
 
         public function delete($id){
+
+            if(!$this->session->userdata("user_id") || $this->session->userdata("role") != 1){
+                redirect("shop");
+            }
+            
             $this->category_model->delete($id);
             $this->session->set_flashdata("category_deleted", "Category deleted");
             redirect("admin/categories/list");

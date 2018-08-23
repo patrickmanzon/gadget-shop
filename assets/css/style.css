@@ -243,6 +243,33 @@ a.sidebar-active{
     margin-bottom: 20px;
 }
 
-.nav-link.dropdown-toggle::after {
-    display:none;
+
+/*========================================================================= 
+                                aside
+===========================================================================*/
+
+.aside-items h3{
+    font-size: 20px;
+    font-weight: bold;
+}
+.notopmargin{
+    color: rgba(52, 58, 64, .7)
+}
+#prod-desc{
+    padding: 0 20px 20px 0;
+    box-sizing: border-box;
+}
+
+#prod-desc h3{
+    font-size: 25px;
+    font-weight: bold;
+}
+
+#prod-desc ul {
+    margin: 15px;
+    padding: 0;
+}
+
+#prod-desc li{
+    font-size: 15px;
 }
